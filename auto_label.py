@@ -89,8 +89,14 @@ def _res2doccano(result: List[Dict]):
         for key, value in data.items():
             ent_class = key
             for item in value:
-                ent1 = Entity(ent_class, item['start'], item['end'])
-                ents.add(ent1)
+                e = (ent_class, item['start'], item['end'])
+                for ent in ents:
+                    if ent == e:
+                        ent1 = ent
+                        break
+                else:
+                    ent1 = Entity(ent_class, item['start'], item['end'])
+                    ents.add(ent1)
                 if not item.get('relations', []):
                     continue
                 for rel_name, items in item['relations'].items():
