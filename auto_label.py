@@ -91,6 +91,8 @@ def _res2doccano(result: List[Dict]):
             for item in value:
                 ent1 = Entity(ent_class, item['start'], item['end'])
                 ents.add(ent1)
+                if not item.get('relations'):
+                    continue
                 for rel_name, items in item['relations'].items():
                     if rel_name == '定语':
                         obj_name = "修饰词"
@@ -159,8 +161,12 @@ def generate_label_from_text(text: str, ie, output_file: str = "./auto_labels.js
 
 if __name__ == '__main__':
     schema = {
-        "丈夫": "老婆",
+        "Subject": "定语",
+        "Object": "定语",
+        "Subject": "谓语",
+        "Relation": "宾语",
     }
+
     ie = UIEPredictor(model='uie-base', schema=schema, device='gpu')
     text = "张三的老婆是李四，王五的老婆是赵六"
     generate_label_from_text(text, ie)
