@@ -91,7 +91,7 @@ def _res2doccano(result: List[Dict]):
             for item in value:
                 ent1 = Entity(ent_class, item['start'], item['end'])
                 ents.add(ent1)
-                if not item.get('relations'):
+                if not item.get('relations', []):
                     continue
                 for rel_name, items in item['relations'].items():
                     if rel_name == '定语':
