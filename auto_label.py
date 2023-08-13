@@ -55,17 +55,17 @@ class Entity:
 
 # {"id":130,"from_id":332,"to_id":333,"type":"link"}
 class Relation:
-    id = 0
+    # id = 0
 
     def __init__(self, from_id, to_id, type):
-        self.id = Relation.id
+        # self.id = Relation.id
         self.from_id = from_id
         self.to_id = to_id
         self.type = type
 
-    def __new__(cls, *args, **kwargs):
-        cls.id += 1
-        return super().__new__(cls)
+    # def __new__(cls, *args, **kwargs):
+    #     cls.id += 1
+    #     return super().__new__(cls)
 
     def __eq__(self, other: Union["Relation", Sequence]):
         if isinstance(other, Relation):
@@ -79,7 +79,7 @@ class Relation:
         return hash((self.from_id, self.to_id, self.type))
 
     def __repr__(self):
-        return f"Relation({self.id} {self.from_id} {self.to_id} {self.type})"
+        return f"Relation({self.from_id} {self.to_id} {self.type})"
 
 
 def _res2doccano(result: List[Dict]):
@@ -126,21 +126,21 @@ def _res2doccano(result: List[Dict]):
 
 
 class Doccano:
-    id = 0
+    # id = 0
 
     def __init__(self, text, entities, relations, Comments=[]):
-        self.id = Doccano.id
+        # self.id = Doccano.id
         self.text = text
         self.entities = entities
         self.relations = relations
         self.Comments = Comments
 
-    def __new__(cls, *args, **kwargs):
-        cls.id += 1
-        return super().__new__(cls)
+    # def __new__(cls, *args, **kwargs):
+    #     cls.id += 1
+    #     return super().__new__(cls)
 
     def __repr__(self):
-        return f"Doccano({self.id} {self.text} {self.entities} {self.relations} {self.Comments})"
+        return f"Doccano({self.text} {self.entities} {self.relations} {self.Comments})"
 
 
 def generate_label_from_text(text: str, ie, output_file: str = "./auto_labels.jsonl"):
@@ -168,5 +168,5 @@ if __name__ == '__main__':
     }
 
     ie = UIEPredictor(model='uie-base', schema=schema, device='gpu')
-    text = "张三的老婆是李四，王五的老婆是赵六"
+    text = "推动部门间物流安检互认、数据互通共享，减少不必要的重复安检"
     generate_label_from_text(text, ie)
