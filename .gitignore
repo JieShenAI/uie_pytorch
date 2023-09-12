@@ -130,3 +130,10 @@ export
 model_best
 uie-base
 .private
+*/data/
+#*.txt
+*.zip
+uie-base.zip
+uie-base/
+uie_base_pytorch/
+.checkpoints/
